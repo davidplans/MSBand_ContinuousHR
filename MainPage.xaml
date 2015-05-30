@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="MSBandTestWindowsPhone.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MSBandTestWindowsPhone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Button Content="Get Skin Temp" HorizontalAlignment="Left" Margin="22,40,0,0" VerticalAlignment="Top" Width="215" Click="GetTemp" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,93,0,0" TextWrapping="Wrap" Text="Pair a Microsoft Band with the phone and tap &quot;Get Skin Temp&quot;." VerticalAlignment="Top" Height="23" Width="380" SelectionChanged="textBlock_SelectionChanged"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="MICROSOFT BAND SDK - SKIN TEMPERATURE" VerticalAlignment="Top" Height="23" Width="380" FontSize="16"/>
+        <Button Content="Remove Tile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="215" Click="RemoveTileButton_Click" FontFamily="Global User Interface" Margin="22,99,0,0"/>
+        <Button x:Name="HRButton" Content="Get HR" HorizontalAlignment="Left" Margin="22,196,0,0" VerticalAlignment="Top" Width="215" Click="GetHr" FontFamily="Global User Interface"/>
+        <Button Content="Remove Tile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="215" Click="RemoveTileButton_Click" FontFamily="Global User Interface" Margin="22,255,0,0"/>
+    </Grid>
+</Page>
