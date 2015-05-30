@@ -9,13 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="Get Skin Temp" HorizontalAlignment="Left" Margin="22,40,0,0" VerticalAlignment="Top" Width="215" Click="GetTemp" FontFamily="Global User Interface"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="254,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Height="97" Width="118" SelectionChanged="textBlock_SelectionChanged" FontSize="32" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="MICROSOFT BAND SDK - SKIN TEMPERATURE" VerticalAlignment="Top" Height="23" Width="380" FontSize="16"/>
-        <Button Content="Remove Tile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="215" Click="RemoveTileButton_Click" FontFamily="Global User Interface" Margin="22,99,0,0"/>
-        <Button x:Name="HRButton" Content="Get HR" HorizontalAlignment="Left" Margin="22,196,0,0" VerticalAlignment="Top" Width="215" Click="GetHr" FontFamily="Global User Interface"/>
-        <Button Content="Remove Tile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="215" Click="RemoveTileButton_Click" FontFamily="Global User Interface" Margin="22,255,0,0"/>
-        <TextBlock x:Name="heartRate" HorizontalAlignment="Left" Margin="254,206,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Height="97" Width="118" SelectionChanged="textBlock_SelectionChanged" FontSize="32" TextAlignment="Center"/>
-        <TextBlock x:Name="warnings" HorizontalAlignment="Left" Margin="22,479,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Height="91" Width="350" SelectionChanged="textBlock_SelectionChanged" FontSize="16" TextAlignment="Center"/>
+        <Button Content="Get Skin Temp" HorizontalAlignment="Left" Margin="22,139,0,0" VerticalAlignment="Top" Width="215" Click="GetTemp" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="254,149,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Height="97" Width="118" SelectionChanged="textBlock_SelectionChanged" FontSize="32" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,89,-2,0" TextWrapping="Wrap" Text="AXA Project Logger WinPhoneTest" VerticalAlignment="Top" Height="23" Width="380" FontSize="16"/>
+        <Button Content="Remove Tile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="215" Click="RemoveTileButton_Click" FontFamily="Global User Interface" Margin="22,198,0,0"/>
+        <Button x:Name="HRButton" Content="Get HR" HorizontalAlignment="Left" Margin="22,295,0,0" VerticalAlignment="Top" Width="215" Click="GetHr" FontFamily="Global User Interface"/>
+        <Button Content="Remove Tile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="215" Click="RemoveTileButton_Click" FontFamily="Global User Interface" Margin="22,354,0,0"/>
+        <TextBlock x:Name="heartRate" HorizontalAlignment="Left" Margin="254,305,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Height="97" Width="118" SelectionChanged="textBlock_SelectionChanged" FontSize="32" TextAlignment="Center"/>
+        <TextBlock x:Name="warnings" HorizontalAlignment="Left" Margin="22,539,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Height="91" Width="350" SelectionChanged="textBlock_SelectionChanged" FontSize="16" TextAlignment="Center"/>
+        <Image Margin="22,10,79,578" Source="Assets/white-word-logo-large.png" Stretch="Fill"/>
     </Grid>
 </Page>
