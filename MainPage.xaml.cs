@@ -55,11 +55,11 @@ namespace MSBandTestWindowsPhone
             {
                 // Get the list of Microsoft Bands paired to the phone.
                 IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
-                //if (pairedBands.Length < 1)
-                //{
-                //    this.textBlock.Text = "This sample app requires a Microsoft Band paired to your phone. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
-                //    return;
-                //}
+                if (pairedBands.Length < 1)
+                {
+                    this.warnings.Text = "This sample app requires a Microsoft Band paired to your phone. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
+                    return;
+                }
 
                 using (IBandClient bandClient = await BandClientManager.Instance.ConnectAsync(pairedBands[0]))
                 {
@@ -91,7 +91,7 @@ namespace MSBandTestWindowsPhone
             }
             catch (Exception ex)
             {
-                this.textBlock.Text = ex.ToString();              
+                this.warnings.Text = ex.ToString();              
             }
         }
 
@@ -103,7 +103,7 @@ namespace MSBandTestWindowsPhone
                 IBandInfo[] pairedBands = await BandClientManager.Instance.GetBandsAsync();
                 if (pairedBands.Length < 1)
                 {
-                    this.textBlock.Text = "This sample app requires a Microsoft Band paired to your phone. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
+                    this.warnings.Text = "This sample app requires a Microsoft Band paired to your phone. Also make sure that you have the latest firmware installed on your Band, as provided by the latest Microsoft Health app.";
                     return;
                 }
 
@@ -128,17 +128,17 @@ namespace MSBandTestWindowsPhone
                         //await bandClient.TileManager.AddTileAsync(myTile);
                     }
 
-                    bandClient.SensorManager.SkinTemperature.ReadingChanged += SkinTemperature_ReadingChanged;
+                    await bandClient.SensorManager.HeartRate.RequestUserConsentAsync();
                     bandClient.SensorManager.HeartRate.ReadingChanged += HeartRate_ReadingChanged;
-                    await bandClient.SensorManager.SkinTemperature.StartReadingsAsync();
+                    await bandClient.SensorManager.HeartRate.StartReadingsAsync();
                     await Task.Delay(TimeSpan.FromMinutes(1));
-                    await bandClient.SensorManager.SkinTemperature.StopReadingsAsync();
+                    await bandClient.SensorManager.HeartRate.StopReadingsAsync();
                 }
 
             }
             catch (Exception ex)
             {
-                this.textBlock.Text = ex.ToString();
+                this.warnings.Text = ex.ToString();
             }
         }
 
@@ -146,7 +146,7 @@ namespace MSBandTestWindowsPhone
         {
             IBandHeartRateReading heartRateReading = e.SensorReading;
             string text = string.Format("HR: {0}bpm", heartRateReading.HeartRate);
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.textBlock.Text = text; }).AsTask();
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { this.heartRate.Text = text; }).AsTask();
         }
 
 
