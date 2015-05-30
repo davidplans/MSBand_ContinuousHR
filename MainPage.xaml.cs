@@ -17,6 +17,9 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -38,6 +41,7 @@ namespace MSBandTestWindowsPhone
         private const string tileId = "{87281FA7-4576-4533-A3E9-8D7BEF7CEEE4}";
         private IBandClient bandClientCopy;
         private int tilesRemaining;
+        public IBandHeartRateReading heartReading;
 
         public MainPage()
         {
@@ -127,11 +131,32 @@ namespace MSBandTestWindowsPhone
                         };
                         //await bandClient.TileManager.AddTileAsync(myTile);
                     }
+                    IEnumerable<TimeSpan> supportedHeartBeatReportingIntervals = bandClient.SensorManager.HeartRate.SupportedReportingIntervals;
+                    //foreach (var ri in supportedHeartBeatReportingIntervals)
+                    //{
+                     //   Debug.WriteLine(ri.ToString()); 
+                    //}
+                    bandClient.SensorManager.HeartRate.ReportingInterval = supportedHeartBeatReportingIntervals.First<TimeSpan>();
 
                     await bandClient.SensorManager.HeartRate.RequestUserConsentAsync();
                     bandClient.SensorManager.HeartRate.ReadingChanged += HeartRate_ReadingChanged;
-                    await bandClient.SensorManager.HeartRate.StartReadingsAsync();
-                    await Task.Delay(TimeSpan.FromMinutes(1));
+                    bandClient.SensorManager.HeartRate.ReadingChanged += async (senderino, args) =>
+                    {
+                        heartReading = args.SensorReading;
+                        await warnings.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+                        {
+                            this.warnings.Text = heartReading.HeartRate.ToString();
+                        });
+                    };
+                    try
+                    {
+                        await bandClient.SensorManager.HeartRate.StartReadingsAsync();
+                    }
+                    catch (BandException ex)
+                    {
+                        throw ex;
+                    }
+                    await Task.Delay(TimeSpan.FromMinutes(1));                    
                     await bandClient.SensorManager.HeartRate.StopReadingsAsync();
                 }
 
